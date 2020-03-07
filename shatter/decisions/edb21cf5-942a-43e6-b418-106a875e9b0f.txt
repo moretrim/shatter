@@ -1,0 +1,50 @@
+# mod UUID to avoid name collisions: edb21cf5-942a-43e6-b418-106a875e9b0f
+
+political_decisions = {
+    edb21cf5-942a-43e6-b418-106a875e9b0f.shatter = {
+        picture = edb21cf5-942a-43e6-b418-106a875e9b0f_shatter_decision
+        alert = no
+
+        potential = {
+            NOT = {
+                has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-more-shatter
+            }
+        }
+
+        allow = {}
+
+        effect = {
+            random_owned = {
+                limit = {
+                    # anti-spam multiplayer safety
+                    NOT = {
+                        has_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering
+                    }
+                }
+
+                owner = {
+                    set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering
+                    country_event = 634736000
+                }
+            }
+        }
+
+        ai_will_do = { factor = 0 }
+    }
+
+    # for development purposes only
+    # edb21cf5-942a-43e6-b418-106a875e9b0f.debug = {
+    #     picture = edb21cf5-942a-43e6-b418-106a875e9b0f_shatter_decision
+    #     alert = no
+
+    #     potential = {}
+
+    #     allow = {}
+
+    #     effect = {
+    #         country_event = 634736100
+    #     }
+
+    #     ai_will_do = { factor = 0 }
+    # }
+}
