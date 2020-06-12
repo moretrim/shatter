@@ -16,7 +16,7 @@ before_install:
       RUN ["apk", "add", "--no-cache", "bash"]
 
       # Install vic2-companion & optional dependency
-      RUN curl --output vic2-companion.zip -L 'https://github.com/moretrim/pds-companion/archive/0.2.0-alpha+20191122.zip' \
+      RUN curl --output vic2-companion.zip -L 'https://github.com/moretrim/pds-companion/archive/0.2.0-alpha+20200612.zip' \
           && unzip vic2-companion.zip                                                                                      \
           && zef install --/test Terminal::ANSIColor                                                                       \
           && cd pds-companion-*                                                                                            \
