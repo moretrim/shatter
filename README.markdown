@@ -3,9 +3,9 @@
 # Shatter
 
 Build status:
-[![travis-master][travis-master-image]](https://travis-ci.org/moretrim/shatter/branches)
+[![travis-master][travis-master-image]](https://travis-ci.com/moretrim/shatter/branches)
 
-[travis-master-image]: https://travis-ci.org/moretrim/shatter.svg?branch=master
+[travis-master-image]: https://travis-ci.com/moretrim/shatter.svg?branch=master
 
 Description
 -----------
