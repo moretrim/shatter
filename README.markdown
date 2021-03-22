@@ -3,9 +3,13 @@
 # Shatter
 
 Build status:
-[![travis-master][travis-master-image]](https://travis-ci.com/moretrim/shatter/branches)
+[![Github Workflow][github-workflow-badge]][github-workflow-dashboard]
 
-[travis-master-image]: https://travis-ci.com/moretrim/shatter.svg?branch=master
+[github-workflow-badge]:
+    https://github.com/moretrim/shatter/actions/workflows/ci-on-push.yaml/badge.svg
+[github-workflow-dashboard]:
+    https://github.com/moretrim/shatter/actions/workflows/ci-on-push.yaml
+    "Github Workflows"
 
 Description
 -----------
