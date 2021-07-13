@@ -1,6 +1,7 @@
-[![shatter](./title.png)](https://github.com/moretrim/shatter)
+[![shatter](media/title.png)](https://github.com/moretrim/shatter)
 
-# Shatter
+Shatter
+-------
 
 Build status:
 [![Github Workflow][github-workflow-badge]][github-workflow-dashboard]
@@ -10,9 +11,6 @@ Build status:
 [github-workflow-dashboard]:
     https://github.com/moretrim/shatter/actions/workflows/ci-on-push.yaml
     "Github Workflows"
-
-Description
------------
 
 Shatter your Victoria II world at any time you want, in any mod.
 
@@ -31,7 +29,13 @@ Install this as you would any other mod. When installed properly, the `shatter.m
 `shatter` directory should live side-by-side. In the Victoria 2 launcher you should see an entry for
 the mod:
 
-![launcher](./launcher.jpg)
+<figure>
+
+![launcher](media/launcher.jpg)
+
+  <figcaption>Example launcher picture featuring the older 0.1.0 version
+  </figcaption>
+</figure>
 
 Make sure that the mod is selected in the launcher (as pictured above) so that it will be loaded by
 the game.
@@ -44,12 +48,12 @@ Usage
 Once a game has been started you can verify that <cite>Shatter</cite> has been loaded correctly by
 looking at the decision screen. It should include the following decision somewhere:
 
-![decision](./decision.jpg)
+![decision](media/decision.jpg)
 
 You can be playing any country for this to be available. Activate the decision at any time to be
 presented with the following choice, before anything is performed:
 
-![event](./event.jpg)
+![event](media/event.jpg)
 
 The event gives you four options:
 
@@ -77,7 +81,7 @@ Limitations & Known Issues
 
 The mod does not do anything beyond freeing vassals and releasing countries. In particular, freshly
 released countries will only control cores of their former master. (This is the same as hitting
-'Release' in the diplomatic interface while playing as the latter.) As a result the final borders
+*Release* in the diplomatic interface while playing as the latter.) As a result the final borders
 may not quite be what you expect.
 
 Since shattering is always performed in the same order behind the scenes, the process always
