@@ -3,15 +3,15 @@
 
 country_event = {
     id      = 634736000
-    title   = edb21cf5-942a-43e6-b418-106a875e9b0f.shatter_event_title
-    desc    = edb21cf5-942a-43e6-b418-106a875e9b0f.shatter_event_desc
+    title   = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.title
+    desc    = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.desc
     picture = edb21cf5-942a-43e6-b418-106a875e9b0f_shatter_event
 
     is_triggered_only = yes
     allow_multiple_instances = no # anti-spam safety, but only for singleplayer
 
     option = {
-        name = edb21cf5-942a-43e6-b418-106a875e9b0f.shatter_event_opt0
+        name = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.opt0
 
         clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering
 
@@ -26,7 +26,6 @@ country_event = {
             limit = {
                 exists = yes
             }
-
             country_event = 634736001
         }
 
@@ -34,7 +33,7 @@ country_event = {
     }
 
     option = {
-        name = edb21cf5-942a-43e6-b418-106a875e9b0f.shatter_event_opt1
+        name = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.opt1
 
         # N.b. mind event-from-decision restrictions
 
@@ -58,7 +57,7 @@ country_event = {
     }
 
     option = {
-        name = edb21cf5-942a-43e6-b418-106a875e9b0f.shatter_event_opt2
+        name = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.opt2
 
         clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering
 
@@ -66,7 +65,7 @@ country_event = {
     }
 
     option = {
-        name = edb21cf5-942a-43e6-b418-106a875e9b0f.shatter_event_opt3
+        name = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.opt3
 
         clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering
 
@@ -78,8 +77,8 @@ country_event = {
 
 country_event = {
     id      = 634736001
-    title   = edb21cf5-942a-43e6-b418-106a875e9b0f.shatter_break_event_title
-    desc    = edb21cf5-942a-43e6-b418-106a875e9b0f.shatter_break_event_desc
+    title   = edb21cf5-942a-43e6-b418-106a875e9b0f.break.title
+    desc    = edb21cf5-942a-43e6-b418-106a875e9b0f.break.desc
     picture = edb21cf5-942a-43e6-b418-106a875e9b0f_shatter_event
 
     is_triggered_only = yes
@@ -157,13 +156,13 @@ country_event = {
     }
 
     option = {
-        name = edb21cf5-942a-43e6-b418-106a875e9b0f.shatter_break_event_opt0
+        name = edb21cf5-942a-43e6-b418-106a875e9b0f.break.opt0
 
         ai_will_do = { factor = 1 }
     }
 
     option = {
-        name = edb21cf5-942a-43e6-b418-106a875e9b0f.shatter_break_event_opt1
+        name = edb21cf5-942a-43e6-b418-106a875e9b0f.break.opt1
 
         set_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-more-shatter
 
@@ -173,8 +172,8 @@ country_event = {
 
 country_event = {
     id      = 634736002
-    title   = edb21cf5-942a-43e6-b418-106a875e9b0f.shatter_petition_event_title
-    desc    = edb21cf5-942a-43e6-b418-106a875e9b0f.shatter_petition_event_desc
+    title   = edb21cf5-942a-43e6-b418-106a875e9b0f.petition.title
+    desc    = edb21cf5-942a-43e6-b418-106a875e9b0f.petition.desc
     picture = edb21cf5-942a-43e6-b418-106a875e9b0f_shatter_event
 
     is_triggered_only = yes
@@ -220,14 +219,14 @@ country_event = {
     }
 
     option = {
-        name = edb21cf5-942a-43e6-b418-106a875e9b0f.shatter_petition_event_opt0
+        name = edb21cf5-942a-43e6-b418-106a875e9b0f.petition.opt0
     }
 }
 
 country_event = {
     id      = 634736003
-    title   = edb21cf5-942a-43e6-b418-106a875e9b0f.shatter_release_event_title
-    desc    = edb21cf5-942a-43e6-b418-106a875e9b0f.shatter_release_event_desc
+    title   = edb21cf5-942a-43e6-b418-106a875e9b0f.release.title
+    desc    = edb21cf5-942a-43e6-b418-106a875e9b0f.release.desc
     picture = edb21cf5-942a-43e6-b418-106a875e9b0f_shatter_event
 
     is_triggered_only = yes
@@ -261,7 +260,7 @@ country_event = {
     }
 
     option = {
-        name = edb21cf5-942a-43e6-b418-106a875e9b0f.shatter_release_event_opt0
+        name = edb21cf5-942a-43e6-b418-106a875e9b0f.release.opt0
     }
 }
 
