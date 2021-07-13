@@ -110,6 +110,8 @@ of <cite>[Point of Impact]</cite> by [Bill Harrison], itself available under the
 Release History
 ---------------
 
+### 1.0.0-dev (in development)
+
 ### 0.1.0
 
 [The original release.][v0.1.0]

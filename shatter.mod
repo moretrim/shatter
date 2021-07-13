@@ -1,2 +1,2 @@
-name = "Shatter 0.1.0"
+name = "Shatter 1.0.0-dev"
 path = "mod/shatter"
