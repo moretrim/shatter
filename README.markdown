@@ -33,7 +33,10 @@ the mod:
 
 ![launcher](media/launcher.jpg)
 
-  <figcaption>Example launcher picture featuring the older 0.1.0 version
+  <figcaption>
+
+  Example launcher picture featuring the older 0.1.0 version
+
   </figcaption>
 </figure>
 
