@@ -119,6 +119,8 @@ Release History
 
 ### 1.0.0-dev (in development)
 
+- notify players for each country that they have just released (this can result in a high number of
+  notifications in some cases)
 - prevent AI countries from picking event outcomes reserved to players (i.e. dismissing the
   <cite>Shatter</cite> decision)
 
