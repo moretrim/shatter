@@ -119,6 +119,9 @@ Release History
 
 ### 1.0.0-dev (in development)
 
+- prevent AI countries from picking event outcomes reserved to players (i.e. dismissing the
+  <cite>Shatter</cite> decision)
+
 ### 0.1.0
 
 [The original release.][v0.1.0]
