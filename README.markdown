@@ -54,7 +54,31 @@ looking at the decision screen. It should include the following decision somewhe
 ![decision](media/decision.jpg)
 
 You can be playing any country for this to be available. Activate the decision at any time to be
-presented with the following choice, before anything is performed:
+presented with **Parameter events** that allow you to pick the right kind of shattering for your
+purposes:
+
+1.  * **History-based release**: set up new countries by relying on their historical data for
+      picking techs, inventions, and government type. Appropriate for shattering precisely on or
+      shortly after a bookmark e.g. 1 January 1836, but can result in large tech deficits otherwise.
+      Some countries that are set up to appear at a later point may have their historical data tuned
+      for that date, resulting in oddities.
+    * **Parent-based release**: set up new countries by relying on their parent country for picking
+      techs, inventions, and government type. Convenient for shattering on a later date, with the
+      drawback of sometimes imposing an inappropriate government type. This has largely the same
+      effects as releasing a country through the *Release Nations* tab of the *Politics* screen
+      except that shattering will only ever produce independent countries, never puppets.
+
+1.  * **Releasable countries only**: stick to countries that are allowed to be released through the
+      *Release Nations* tab of the Politics screen. Special cases (usually: revolt tags, some
+      cultural unions) will not appear on the map.
+    * **Allow unreleasable countries**: try to release everything, consequences be damned.
+
+Each parameter is picked on a per-activation basis, or can alternatively be saved to be re-used for
+all subsequent shatterings for this campaign. Saved parameters are stored on a per-country basis,
+and can be reset through the decision (without actually shattering anything).
+
+Once all parameters have been picked, or if all parameters were already saved, you will be presented
+with the following choice before anything is performed:
 
 ![event](media/event.jpg)
 
@@ -119,6 +143,7 @@ Release History
 
 ### 1.0.0-dev (in development)
 
+- implement shatter parameters, to customise shattering behaviour
 - notify players for each country that they have just released (this can result in a high number of
   notifications in some cases)
 - prevent AI countries from picking event outcomes reserved to players (i.e. dismissing the

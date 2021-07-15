@@ -14,6 +14,13 @@ political_decisions = {
         allow = {}
 
         effect = {
+            ## Clear previous parameters
+
+            clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.parent-based-releases
+            clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+
+            ## Dispatch to setup event
+
             random_owned = {
                 limit = {
                     # anti-spam multiplayer safety
@@ -24,7 +31,58 @@ political_decisions = {
 
                 owner = {
                     set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering
-                    country_event = 634736000
+
+                    random_owned = {
+                        limit = {
+                            owner = {
+                                NOT = {
+                                    has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.history-based-releases
+                                    has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.parent-based-releases
+                                }
+                            }
+                        }
+
+                        owner = { country_event = 634736000 }
+                    }
+
+                    random_owned = {
+                        limit = {
+                            owner = {
+                                OR = {
+                                    has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.history-based-releases
+                                    has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.parent-based-releases
+                                }
+                            }
+                        }
+
+                        owner = {
+                            random_owned = {
+                                limit = {
+                                    owner = {
+                                        NOT = {
+                                            has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.only-releasables
+                                            has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+                                        }
+                                    }
+                                }
+
+                                owner = { country_event = 634736001 }
+                            }
+
+                            random_owned = {
+                                limit = {
+                                    owner = {
+                                        OR = {
+                                            has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.only-releasables
+                                            has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+                                        }
+                                    }
+                                }
+
+                                owner = { country_event = 634736002 }
+                            }
+                        }
+                    }
                 }
             }
         }

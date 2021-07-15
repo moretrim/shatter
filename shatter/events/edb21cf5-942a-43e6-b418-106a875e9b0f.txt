@@ -3,14 +3,247 @@
 
 ## Shatter setup
 
+# Before the initiation event proper is fired, the player is presented with events to pick shatter
+# parameters.
+
+# Parameter: history-based or parent-based release.
+#
+# When releasing a country through the `release` command the game relies on that country's history
+# file to set it up, e.g. for picking techs and the right government type. The catch is that history
+# files normally only have bookmark data, which is to say that is only really suitable for 1 January
+# 1836 (or the A House Divided 1861 bookmark date, though that is actually untested). Even then some
+# countries might have their historical data set up for a later date, e.g. if it is a revolt tag. As
+# the game progresses, this historical data may become stale resulting e.g. in countries being
+# released with a large tech deficit.
+#
+# When releasing a country through the `release_vassal` command the game relies on the originating
+# country to set the new one up. (As the name implies it also sets up a generic puppet-overlord
+# relationship, but that can easily be tweaked through subsequente `release_vassal` and/or
+# `create_vassal` commands.) Consequently the country ends up with the same techs, inventions, and
+# government type as the parent.
 country_event = {
     id      = 634736000
+    title   = edb21cf5-942a-43e6-b418-106a875e9b0f.history-or-parent.title
+    desc    = edb21cf5-942a-43e6-b418-106a875e9b0f.history-or-parent.desc
+    picture = edb21cf5-942a-43e6-b418-106a875e9b0f_shatter_event
+
+    is_triggered_only = yes
+
+    option = {
+        name = edb21cf5-942a-43e6-b418-106a875e9b0f.history-or-parent.opt0
+
+        random_owned = {
+            limit = {
+                owner = {
+                    NOT = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.only-releasables
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+                    }
+                }
+            }
+
+            owner = { country_event = 634736001 }
+        }
+
+        random_owned = {
+            limit = {
+                owner = {
+                    OR = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.only-releasables
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+                    }
+                }
+            }
+
+            owner = { country_event = 634736002 }
+        }
+
+        ai_chance = { factor = 1 }
+    }
+
+    option = {
+        name = edb21cf5-942a-43e6-b418-106a875e9b0f.history-or-parent.opt1
+
+        set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.parent-based-releases
+
+        random_owned = {
+            limit = {
+                owner = {
+                    NOT = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.only-releasables
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+                    }
+                }
+            }
+
+            owner = { country_event = 634736001 }
+        }
+
+        random_owned = {
+            limit = {
+                owner = {
+                    OR = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.only-releasables
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+                    }
+                }
+            }
+
+            owner = { country_event = 634736002 }
+        }
+
+        ai_chance = { factor = 0 }
+    }
+
+    option = {
+        name = edb21cf5-942a-43e6-b418-106a875e9b0f.history-or-parent.opt2
+
+        set_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.history-based-releases
+
+        random_owned = {
+            limit = {
+                owner = {
+                    NOT = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.only-releasables
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+                    }
+                }
+            }
+
+            owner = { country_event = 634736001 }
+        }
+
+        random_owned = {
+            limit = {
+                owner = {
+                    OR = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.only-releasables
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+                    }
+                }
+            }
+
+            owner = { country_event = 634736002 }
+        }
+
+        ai_chance = { factor = 0 }
+    }
+
+    option = {
+        name = edb21cf5-942a-43e6-b418-106a875e9b0f.history-or-parent.opt3
+
+        set_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.parent-based-releases
+
+        random_owned = {
+            limit = {
+                owner = {
+                    NOT = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.only-releasables
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+                    }
+                }
+            }
+
+            owner = { country_event = 634736001 }
+        }
+
+        random_owned = {
+            limit = {
+                owner = {
+                    OR = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.only-releasables
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+                    }
+                }
+            }
+
+            owner = { country_event = 634736002 }
+        }
+
+        ai_chance = { factor = 0 }
+    }
+}
+
+country_event = {
+    id      = 634736001
+    title   = edb21cf5-942a-43e6-b418-106a875e9b0f.releasable-only.title
+    desc    = edb21cf5-942a-43e6-b418-106a875e9b0f.releasable-only.desc
+    picture = edb21cf5-942a-43e6-b418-106a875e9b0f_shatter_event
+
+    is_triggered_only = yes
+
+    option = {
+        name = edb21cf5-942a-43e6-b418-106a875e9b0f.releasable-only.opt0
+
+        country_event = 634736002
+
+        ai_chance = { factor = 1 }
+    }
+
+    option = {
+        name = edb21cf5-942a-43e6-b418-106a875e9b0f.releasable-only.opt1
+
+        set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+
+        country_event = 634736002
+
+        ai_chance = { factor = 0 }
+    }
+
+    option = {
+        name = edb21cf5-942a-43e6-b418-106a875e9b0f.releasable-only.opt2
+
+        set_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.only-releasables
+
+        country_event = 634736002
+
+        ai_chance = { factor = 0 }
+    }
+
+    option = {
+        name = edb21cf5-942a-43e6-b418-106a875e9b0f.releasable-only.opt3
+
+        set_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+
+        country_event = 634736002
+
+        ai_chance = { factor = 0 }
+    }
+}
+
+# Initiation event
+country_event = {
+    id      = 634736002
     title   = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.title
     desc    = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.desc
     picture = edb21cf5-942a-43e6-b418-106a875e9b0f_shatter_event
 
     is_triggered_only = yes
     allow_multiple_instances = no # anti-spam safety, but only for singleplayer
+
+    immediate = {
+        ## Set saved parameters
+
+        random_owned = {
+            limit = {
+                owner = {
+                    has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.parent-based-releases
+                }
+            }
+
+            set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.parent-based-releases
+        }
+
+        random_owned = {
+            limit = {
+                owner = {
+                    has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+                }
+            }
+
+            set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+        }
+    }
 
     option = {
         name = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.opt0
@@ -20,7 +253,7 @@ country_event = {
         # N.b. scopes such as any_country inside events fired from a decision appears to follow
         # decision rules
 
-        ## break every country
+        ## Break every country
 
         country_event = 634736010
 
@@ -38,25 +271,9 @@ country_event = {
     option = {
         name = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.opt1
 
-        # N.b. mind event-from-decision restrictions
+        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering
 
-        set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-everything
-
-        ## break every country
-
-        country_event = 634736010
-
-        any_country = {
-            limit = {
-                exists = yes
-            }
-
-            country_event = 634736010
-        }
-
-        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-everything
-
-        ai_chance = { factor = 0 }
+        ai_chance = { factor = 1 }
     }
 
     option = {
@@ -64,7 +281,13 @@ country_event = {
 
         clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering
 
-        ai_chance = { factor = 1 }
+        clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.history-based-releases
+        clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.parent-based-releases
+
+        clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.only-releasables
+        clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+
+        ai_chance = { factor = 0 }
     }
 
     option = {
@@ -204,7 +427,7 @@ country_event = {
 
                             OR = {
                                 is_releasable_vassal = yes
-                                has_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-everything
+                                has_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
                             }
 
                             OR = {
@@ -249,7 +472,21 @@ country_event = {
     allow_multiple_instances = yes
 
     immediate = {
-        release = FROM
+        random_owned = {
+            limit = {
+                NOT = { has_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.parent-based-releases }
+            }
+
+            owner = { release = FROM }
+        }
+
+        random_owned = {
+            limit = {
+                has_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.parent-based-releases
+            }
+
+            owner = { release_vassal = FROM release_vassal = FROM }
+        }
 
         random_country = {
             limit = {
