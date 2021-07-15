@@ -458,18 +458,19 @@ country_event = {
     picture = edb21cf5-942a-43e6-b418-106a875e9b0f_shatter_event
 
     is_triggered_only = yes
-    # Technically, this doesn't seem to be required! This event is often fired multiple times
+    # We could allow this if we wanted. One way or the other the event *is* fired multiple times
     # against `THIS` (from initiating event 002), and the `immediate` block appears to be processed
     # every time regardless of `allow_multiple_instances`.
     #
-    # That is, from the perspective of the human player, a single event is received notifying that a
-    # single arbitrary country has been released--and yet every other release candidates have
-    # appeared on the map despite a lack of associated notification event. Setting
-    # `allow_multiple_instances` results in multiple notifications, with identical effects.
+    # That is, from the perspective of the human player, a single event is received (if multiple
+    # instances are disallowed) notifying that a single arbitrary country has been released--and yet
+    # every other release candidates have appeared on the map despite a lack of associated
+    # notification event. Setting `allow_multiple_instances` results in multiple notifications, with
+    # identical effects. To achieve this we are careful not performing anything in the `option`
+    # block.
     #
-    # Nonetheless we set `allow_multiple_instances` to maintain a one-to-one relationships between
-    # notifications and actually released countries and avoid surprising human players.
-    allow_multiple_instances = yes
+    # Nonetheless we disallow `allow_multiple_instances` to spare players the notification spam.
+    #allow_multiple_instances = yes
 
     immediate = {
         random_owned = {
