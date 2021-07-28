@@ -253,6 +253,38 @@ country_event = {
         # N.b. scopes such as any_country inside events fired from a decision appears to follow
         # decision rules
 
+        ## (Re)set bookkeeping
+
+        any_country = {
+            limit = {
+                exists = no
+            }
+
+            clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+            set_variable = {
+                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+                value = 0
+            }
+        }
+
+        clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+        set_variable = {
+            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+            value = 1
+        }
+
+        any_country = {
+            limit = {
+                exists = yes
+            }
+
+            clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+            set_variable = {
+                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+                value = 1
+            }
+        }
+
         ## Break every country
 
         country_event = 634736010
@@ -260,6 +292,9 @@ country_event = {
         any_country = {
             limit = {
                 exists = yes
+                NOT = { check_variable = {
+                    which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 2
+                } }
             }
 
             country_event = 634736010
@@ -303,6 +338,65 @@ country_event = {
 
 ## Shatter machinery
 
+# ## Design
+#
+# The notional algorithm is as follows:
+#
+# 1. existing countries start at depth 1, non-existing countries have unset depth (0 internally)
+# 2. main loop: for every existing country at depth `n`,
+#      a. release it from its overlord if applicable
+#      b. for every country of which it holds a core, release it as independent with depth `n + 1`
+#      c. break loop if `n + 1` at maximum depth, otherwise resume loop for `n + 1`
+#
+# (Note that the loop can end without hitting maximum depth if there are no more countries to
+# release.)
+#
+# By carefully ordering effects, this performs a breadth-first traversal of all countries: first
+# visiting those on the map (depth 1), then those released just prior (depth 2), and so on.
+#
+# ## Practical constraints
+#
+# The main limitation is that we don't have access to looping constructs. Instead we (gingerly) have
+# main "loop" event #10 either stop if at maximum depth, or else recursively invoke itself at step c
+# targeting the freshly released countries of step b.
+#
+# Note that because every iteration step tentatively invokes the next one for multiple countries
+# this would be a classic SUPERLINEAR nested loop. We *must* perform careful bookkeeping to prevent
+# redundant code, safeguarding performance: the `to-be-broken` country flag. For every depth `n`,
+# every country receives event #10 exactly once.
+#
+# ## Ordering of effects
+#
+# When an event is fired, its `immediate` block runs *unconditionally* first of all. Accordingly if
+# that block fires subsequent events, corresponding `immediate` blocks run just as unconditionally.
+# This is what permits carefully ordering of our effects to ensure a proper breadth-first traversal.
+#
+# In comparison it's unclear how `option` blocks are ordered relative to other invoking and invoked
+# event code. `option` blocks also respect the `allow_multiple_instances` flag.
+#
+# ## Shattering the most
+#
+# The purpose of relying on breadth-first traversal is to help achieve the goal of shattering the
+# world to the greatest extent, and to improve reliability. Without the loop a single pass could, in
+# circumstances of multiple overlapping unreleased cores, release just one country where two would
+# be possible. With a loop the freshly released country gets the opportunity to be shattered in
+# turn, circumstances permitting.
+#
+# As the traversal only provides ordering guarantees between countries with differing depths, we
+# still want to take extra precautions. For this purpose we add some order to step b:
+# - since culture unions are normally large countries spanning others, their release is ordered to
+#   after non-unions
+#
+# ## Releasing
+#
+# #11-#12 is one chain to release the initial receiver of #11. The chain spans two events to juggle
+# THIS & FROM, due to script limitations:
+#
+# - #11 performs checks, and cannot use remove_core
+# - #12 performs the bulk of the work: release & core removal, while also performing bookkeeping--it
+#   also acts as a notification event (but refer to the note on multiple instances)
+
+# Main loop
 country_event = {
     id      = 634736010
     title   = edb21cf5-942a-43e6-b418-106a875e9b0f.break.title
@@ -327,7 +421,7 @@ country_event = {
             }
         }
 
-        ## release non-unions first
+        ## Release non-unions first
 
         any_country = {
             limit = {
@@ -349,13 +443,86 @@ country_event = {
             limit = {
                 has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
                 is_cultural_union = no
+
+                OR = {
+                    AND = {
+                        THIS = {
+                            check_variable = {
+                                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 1
+                            }
+                            NOT = { check_variable = {
+                                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 2
+                            } }
+                        }
+
+                        check_variable = {
+                            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 2
+                        }
+                        NOT = { check_variable = {
+                            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 3
+                        } }
+                    }
+
+                    AND = {
+                        THIS = {
+                            check_variable = {
+                                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 2
+                            }
+                            NOT = { check_variable = {
+                                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 3
+                            } }
+                        }
+
+                        check_variable = {
+                            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 3
+                        }
+                        NOT = { check_variable = {
+                            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 4
+                        } }
+                    }
+
+                    AND = {
+                        THIS = {
+                            check_variable = {
+                                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 3
+                            }
+                            NOT = { check_variable = {
+                                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 4
+                            } }
+                        }
+
+                        check_variable = {
+                            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 4
+                        }
+                        NOT = { check_variable = {
+                            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 5
+                        } }
+                    }
+
+                    AND = {
+                        THIS = {
+                            check_variable = {
+                                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 4
+                            }
+                            # N.b. saturate at 5, but avoid non-terminating loop here
+                            NOT = { check_variable = {
+                                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 5
+                            } }
+                        }
+
+                        # N.b. saturate at 5, such that everything above is fair game
+                        check_variable = {
+                            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 5
+                        }
+                    }
+                }
             }
 
             clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
             country_event = 634736010
         }
 
-        ## go for cultural unions second
+        ## Go for cultural unions second
 
         set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.releasing-cultural-unions
 
@@ -374,6 +541,80 @@ country_event = {
         any_country = {
             limit = {
                 has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+                is_cultural_union = yes
+
+                OR = {
+                    AND = {
+                        THIS = {
+                            check_variable = {
+                                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 1
+                            }
+                            NOT = { check_variable = {
+                                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 2
+                            } }
+                        }
+
+                        check_variable = {
+                            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 2
+                        }
+                        NOT = { check_variable = {
+                            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 3
+                        } }
+                    }
+
+                    AND = {
+                        THIS = {
+                            check_variable = {
+                                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 2
+                            }
+                            NOT = { check_variable = {
+                                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 3
+                            } }
+                        }
+
+                        check_variable = {
+                            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 3
+                        }
+                        NOT = { check_variable = {
+                            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 4
+                        } }
+                    }
+
+                    AND = {
+                        THIS = {
+                            check_variable = {
+                                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 3
+                            }
+                            NOT = { check_variable = {
+                                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 4
+                            } }
+                        }
+
+                        check_variable = {
+                            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 4
+                        }
+                        NOT = { check_variable = {
+                            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 5
+                        } }
+                    }
+
+                    AND = {
+                        THIS = {
+                            check_variable = {
+                                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 4
+                            }
+                            # N.b. saturate at 5, but avoid non-terminating loop here
+                            NOT = { check_variable = {
+                                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 5
+                            } }
+                        }
+
+                        # N.b. saturate at 5, such that everything above is fair game
+                        check_variable = {
+                            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 5
+                        }
+                    }
+                }
             }
 
             clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
@@ -398,6 +639,7 @@ country_event = {
     }
 }
 
+# Release setup
 country_event = {
     id      = 634736011
     title   = edb21cf5-942a-43e6-b418-106a875e9b0f.petition.title
@@ -408,41 +650,36 @@ country_event = {
     allow_multiple_instances = yes
 
     immediate = {
-        FROM = {
-            random_owned = {
-                limit = {
-                    owner = {
-                        # avoid self-destruction
-                        any_owned_province = {
-                            NOT = {
-                                is_core = THIS
-                            }
-                        }
+        random_country = {
+            limit = {
+                tag = FROM
 
-                        # too strict
-                        #is_possible_vassal = THIS
-
-                        THIS = {
-                            exists = no
-
-                            OR = {
-                                is_releasable_vassal = yes
-                                has_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
-                            }
-
-                            OR = {
-                                is_cultural_union = no
-                                has_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.releasing-cultural-unions
-                            }
-                        }
+                # avoid self-destruction
+                any_owned_province = {
+                    NOT = {
+                        is_core = THIS
                     }
                 }
 
-                owner = {
-                    # setup FROM for remove_core
-                    country_event = 634736012
+                THIS = {
+                    exists = no
+
+                    OR = {
+                        # N.b. this is an implication, but cannot be structured as one due to game
+                        # shortcomings.
+                        is_releasable_vassal = yes
+                        has_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+                    }
+
+                    OR = {
+                        NOT = { is_cultural_union = yes }
+                        has_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.releasing-cultural-unions
+                    }
                 }
             }
+
+            # setup FROM for remove_core
+            country_event = 634736012
         }
     }
 
@@ -451,6 +688,7 @@ country_event = {
     }
 }
 
+# Release work
 country_event = {
     id      = 634736012
     title   = edb21cf5-942a-43e6-b418-106a875e9b0f.release.title
@@ -492,17 +730,7 @@ country_event = {
         random_country = {
             limit = {
                 tag = FROM
-                is_vassal = yes
-            }
-
-            overlord = {
-                release_vassal = FROM
-            }
-        }
-
-        random_country = {
-            limit = {
-                tag = FROM
+                exists = THIS
             }
 
             any_owned = {
@@ -511,6 +739,64 @@ country_event = {
 
             # mark for breadth-first traversal
             set_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+        }
+
+        ## Set depth
+
+        random_country = {
+            limit = {
+                tag = FROM
+                exists = THIS
+                NOT = { check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 1 } }
+                THIS = {
+                    check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 1 }
+                    NOT = { check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 2 } }
+                }
+            }
+
+            set_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 2 }
+        }
+
+        random_country = {
+            limit = {
+                tag = FROM
+                exists = THIS
+                NOT = { check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 1 } }
+                THIS = {
+                    check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 2 }
+                    NOT = { check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 3 } }
+                }
+            }
+
+            set_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 3 }
+        }
+
+        random_country = {
+            limit = {
+                tag = FROM
+                exists = THIS
+                NOT = { check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 1 } }
+                THIS = {
+                    check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 3 }
+                    NOT = { check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 4 } }
+                }
+            }
+
+            set_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 4 }
+        }
+
+        random_country = {
+            limit = {
+                tag = FROM
+                exists = THIS
+                NOT = { check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 1 } }
+                THIS = {
+                    check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 4 }
+                    # N.b. saturate at 5
+                }
+            }
+
+            set_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 5 }
         }
     }
 
