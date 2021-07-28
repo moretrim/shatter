@@ -30,5 +30,6 @@ edb21cf5-942a-43e6-b418-106a875e9b0f.petition.opt0;Momentous news.;;;;;;;;;;;;;
 edb21cf5-942a-43e6-b418-106a875e9b0f.release.title;Shatter: $FROMCOUNTRY$ Enters the World Stage;;;;;;;;;;;;;
 edb21cf5-942a-43e6-b418-106a875e9b0f.release.desc;\nThe time has come to grant self-rule to $FROMCOUNTRY$.;;;;;;;;;;;;;
 edb21cf5-942a-43e6-b418-106a875e9b0f.release.opt0;If we must.;;;;;;;;;;;;;
-## Flags ##;;;;;;;;;;;;;;
+## Flags and variables ##;;;;;;;;;;;;;;
 edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken;To Be Shattered;;;;;;;;;;;;;
+edb21cf5-942a-43e6-b418-106a875e9b0f.depth;Release level;;;;;;;;;;;;;
