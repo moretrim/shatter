@@ -253,7 +253,11 @@ country_event = {
         # N.b. scopes such as any_country inside events fired from a decision appears to follow
         # decision rules
 
-        ## (Re)set bookkeeping
+        ## Non-unions first
+
+        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.releasing-cultural-unions
+
+        ### (Re)set bookkeeping
 
         any_country = {
             limit = {
@@ -285,7 +289,7 @@ country_event = {
             }
         }
 
-        ## Break every country
+        ### Break every country
 
         country_event = 634736010
 
@@ -299,6 +303,59 @@ country_event = {
 
             country_event = 634736010
         }
+
+        ## Culture unions
+
+        set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.releasing-cultural-unions
+
+        ### (Re)set bookkeeping
+
+        any_country = {
+            limit = {
+                exists = no
+            }
+
+            clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+            set_variable = {
+                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+                value = 0
+            }
+        }
+
+        clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+        set_variable = {
+            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+            value = 1
+        }
+
+        any_country = {
+            limit = {
+                exists = yes
+            }
+
+            clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+            set_variable = {
+                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+                value = 1
+            }
+        }
+
+        ### Break every country
+
+        country_event = 634736010
+
+        any_country = {
+            limit = {
+                exists = yes
+                NOT = { check_variable = {
+                    which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 2
+                } }
+            }
+
+            country_event = 634736010
+        }
+
+        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.releasing-cultural-unions
 
         ai_chance = { factor = 0 }
     }
@@ -383,9 +440,10 @@ country_event = {
 # turn, circumstances permitting.
 #
 # As the traversal only provides ordering guarantees between countries with differing depths, we
-# still want to take extra precautions. For this purpose we add some order to step b:
-# - since culture unions are normally large countries spanning others, their release is ordered to
-#   after non-unions
+# still want to take extra precautions. To that end we really perform multiple traversals:
+# - since culture unions are normally large countries spanning others, we first do a traversal that
+#   excludes them
+# - traverse gain, including culture unions
 #
 # ## Releasing
 #
@@ -404,7 +462,8 @@ country_event = {
     picture = edb21cf5-942a-43e6-b418-106a875e9b0f_shatter_event
 
     is_triggered_only = yes
-    allow_multiple_instances = yes
+    # See #12 for reasoning.
+    #allow_multiple_instances = yes
 
     immediate = {
         random_owned = {
@@ -421,8 +480,7 @@ country_event = {
             }
         }
 
-        ## Release non-unions first
-
+        # release next depth
         any_country = {
             limit = {
                 exists = no
@@ -442,7 +500,6 @@ country_event = {
         any_country = {
             limit = {
                 has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
-                is_cultural_union = no
 
                 OR = {
                     AND = {
@@ -521,107 +578,6 @@ country_event = {
             clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
             country_event = 634736010
         }
-
-        ## Go for cultural unions second
-
-        set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.releasing-cultural-unions
-
-        any_country = {
-            limit = {
-                exists = no
-                any_core = {
-                    owned_by = THIS
-                }
-            }
-
-            country_event = 634736011
-        }
-
-        # resume breadth-first traversal
-        any_country = {
-            limit = {
-                has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
-                is_cultural_union = yes
-
-                OR = {
-                    AND = {
-                        THIS = {
-                            check_variable = {
-                                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 1
-                            }
-                            NOT = { check_variable = {
-                                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 2
-                            } }
-                        }
-
-                        check_variable = {
-                            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 2
-                        }
-                        NOT = { check_variable = {
-                            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 3
-                        } }
-                    }
-
-                    AND = {
-                        THIS = {
-                            check_variable = {
-                                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 2
-                            }
-                            NOT = { check_variable = {
-                                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 3
-                            } }
-                        }
-
-                        check_variable = {
-                            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 3
-                        }
-                        NOT = { check_variable = {
-                            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 4
-                        } }
-                    }
-
-                    AND = {
-                        THIS = {
-                            check_variable = {
-                                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 3
-                            }
-                            NOT = { check_variable = {
-                                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 4
-                            } }
-                        }
-
-                        check_variable = {
-                            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 4
-                        }
-                        NOT = { check_variable = {
-                            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 5
-                        } }
-                    }
-
-                    AND = {
-                        THIS = {
-                            check_variable = {
-                                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 4
-                            }
-                            # N.b. saturate at 5, but avoid non-terminating loop here
-                            NOT = { check_variable = {
-                                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 5
-                            } }
-                        }
-
-                        # N.b. saturate at 5, such that everything above is fair game
-                        check_variable = {
-                            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 5
-                        }
-                    }
-                }
-            }
-
-            clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
-            country_event = 634736010
-        }
-
-        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.releasing-cultural-unions
     }
 
     option = {
@@ -697,7 +653,7 @@ country_event = {
 
     is_triggered_only = yes
     # We could allow this if we wanted. One way or the other the event *is* fired multiple times
-    # against `THIS` (from initiating event 002), and the `immediate` block appears to be processed
+    # against `THIS` (from initiating event #10), and the `immediate` block appears to be processed
     # every time regardless of `allow_multiple_instances`.
     #
     # That is, from the perspective of the human player, a single event is received (if multiple
