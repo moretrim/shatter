@@ -211,190 +211,6 @@ country_event = {
     }
 }
 
-# Initiation event
-country_event = {
-    id      = 634736002
-    title   = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.title
-    desc    = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.desc
-    picture = edb21cf5-942a-43e6-b418-106a875e9b0f_shatter_event
-
-    is_triggered_only = yes
-    allow_multiple_instances = no # anti-spam safety, but only for singleplayer
-
-    immediate = {
-        ## Set saved parameters
-
-        random_owned = {
-            limit = {
-                owner = {
-                    has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.parent-based-releases
-                }
-            }
-
-            set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.parent-based-releases
-        }
-
-        random_owned = {
-            limit = {
-                owner = {
-                    has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
-                }
-            }
-
-            set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
-        }
-    }
-
-    option = {
-        name = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.opt0
-
-        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering
-
-        # N.b. scopes such as any_country inside events fired from a decision appears to follow
-        # decision rules
-
-        ## Non-unions first
-
-        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.releasing-cultural-unions
-
-        ### (Re)set bookkeeping
-
-        any_country = {
-            limit = {
-                exists = no
-            }
-
-            clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
-            set_variable = {
-                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
-                value = 0
-            }
-        }
-
-        clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
-        set_variable = {
-            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
-            value = 1
-        }
-
-        any_country = {
-            limit = {
-                exists = yes
-            }
-
-            clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
-            set_variable = {
-                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
-                value = 1
-            }
-        }
-
-        ### Break every country
-
-        country_event = 634736010
-
-        any_country = {
-            limit = {
-                exists = yes
-                NOT = { check_variable = {
-                    which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 2
-                } }
-            }
-
-            country_event = 634736010
-        }
-
-        ## Culture unions
-
-        set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.releasing-cultural-unions
-
-        ### (Re)set bookkeeping
-
-        any_country = {
-            limit = {
-                exists = no
-            }
-
-            clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
-            set_variable = {
-                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
-                value = 0
-            }
-        }
-
-        clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
-        set_variable = {
-            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
-            value = 1
-        }
-
-        any_country = {
-            limit = {
-                exists = yes
-            }
-
-            clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
-            set_variable = {
-                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
-                value = 1
-            }
-        }
-
-        ### Break every country
-
-        country_event = 634736010
-
-        any_country = {
-            limit = {
-                exists = yes
-                NOT = { check_variable = {
-                    which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 2
-                } }
-            }
-
-            country_event = 634736010
-        }
-
-        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.releasing-cultural-unions
-
-        ai_chance = { factor = 0 }
-    }
-
-    option = {
-        name = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.opt1
-
-        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering
-
-        ai_chance = { factor = 1 }
-    }
-
-    option = {
-        name = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.opt2
-
-        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering
-
-        clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.history-based-releases
-        clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.parent-based-releases
-
-        clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.only-releasables
-        clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
-
-        ai_chance = { factor = 0 }
-    }
-
-    option = {
-        name = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.opt3
-
-        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering
-
-        set_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-more-shatter
-
-        ai_chance = { factor = 0 }
-    }
-}
-
-## Shatter machinery
-
 # ## Design
 #
 # The notional algorithm is as follows:
@@ -440,10 +256,15 @@ country_event = {
 # turn, circumstances permitting.
 #
 # As the traversal only provides ordering guarantees between countries with differing depths, we
-# still want to take extra precautions. To that end we really perform multiple traversals:
-# - since culture unions are normally large countries spanning others, we first do a traversal that
-#   excludes them
-# - traverse gain, including culture unions
+# still want to take extra precautions. To that end we really perform multiple complete traversals
+# to handle the following considerations:
+# - releasing capitals first makes for a nicer map, in the sense that more countries will be holding
+#   their historical capital and it avoids unnecessarily making exclaves (consider the case of the
+#   Basque country which straddles France and Spain: it's best being released by Spain first)
+# - likewise when it comes to releasing non-unions before cultural unions, since the latter tend to
+#   be large countries spanning others
+#
+# All together this makes for four passes.
 #
 # ## Releasing
 #
@@ -453,6 +274,289 @@ country_event = {
 # - #11 performs checks, and cannot use remove_core
 # - #12 performs the bulk of the work: release & core removal, while also performing bookkeeping--it
 #   also acts as a notification event (but refer to the note on multiple instances)
+
+# Initiation event
+country_event = {
+    id      = 634736002
+    title   = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.title
+    desc    = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.desc
+    picture = edb21cf5-942a-43e6-b418-106a875e9b0f_shatter_event
+
+    is_triggered_only = yes
+    allow_multiple_instances = no # anti-spam safety, but only for singleplayer
+
+    immediate = {
+        ## Set saved parameters
+
+        random_owned = {
+            limit = {
+                owner = {
+                    has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.parent-based-releases
+                }
+            }
+
+            set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.parent-based-releases
+        }
+
+        random_owned = {
+            limit = {
+                owner = {
+                    has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+                }
+            }
+
+            set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+        }
+    }
+
+    option = {
+        name = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.opt0
+
+        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering
+
+        # N.b. scopes such as any_country inside events fired from a decision appears to follow
+        # decision rules
+
+        ## Non-unions with capitals
+
+        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-without-capital
+        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-cultural-unions
+
+        ### (Re)set bookkeeping
+
+        any_country = {
+            limit = {
+                exists = no
+            }
+
+            clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+            set_variable = {
+                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+                value = 0
+            }
+        }
+
+        clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+        set_variable = {
+            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+            value = 1
+        }
+
+        any_country = {
+            limit = {
+                exists = yes
+            }
+
+            clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+            set_variable = {
+                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+                value = 1
+            }
+        }
+
+        ### Break every country
+
+        country_event = 634736010
+
+        any_country = {
+            limit = {
+                exists = yes
+            }
+
+            country_event = 634736010
+        }
+
+        ## Culture unions with capitals
+
+        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-without-capital
+        set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-cultural-unions
+
+        ### (Re)set bookkeeping
+
+        any_country = {
+            limit = {
+                exists = no
+            }
+
+            clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+            set_variable = {
+                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+                value = 0
+            }
+        }
+
+        clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+        set_variable = {
+            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+            value = 1
+        }
+
+        any_country = {
+            limit = {
+                exists = yes
+            }
+
+            clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+            set_variable = {
+                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+                value = 1
+            }
+        }
+
+        ### Break every country
+
+        country_event = 634736010
+
+        any_country = {
+            limit = {
+                exists = yes
+            }
+
+            country_event = 634736010
+        }
+
+        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-cultural-unions
+
+        ## Non-unions without capitals
+
+        set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-without-capital
+        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-cultural-unions
+
+        ### (Re)set bookkeeping
+
+        any_country = {
+            limit = {
+                exists = no
+            }
+
+            clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+            set_variable = {
+                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+                value = 0
+            }
+        }
+
+        clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+        set_variable = {
+            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+            value = 1
+        }
+
+        any_country = {
+            limit = {
+                exists = yes
+            }
+
+            clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+            set_variable = {
+                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+                value = 1
+            }
+        }
+
+        ### Break every country
+
+        country_event = 634736010
+
+        any_country = {
+            limit = {
+                exists = yes
+            }
+
+            country_event = 634736010
+        }
+
+        ## Culture unions without capitals
+
+        set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-without-capital
+        set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-cultural-unions
+
+        ### (Re)set bookkeeping
+
+        any_country = {
+            limit = {
+                exists = no
+            }
+
+            clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+            set_variable = {
+                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+                value = 0
+            }
+        }
+
+        clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+        set_variable = {
+            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+            value = 1
+        }
+
+        any_country = {
+            limit = {
+                exists = yes
+            }
+
+            clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+            set_variable = {
+                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+                value = 1
+            }
+        }
+
+        ### Break every country
+
+        country_event = 634736010
+
+        any_country = {
+            limit = {
+                exists = yes
+            }
+
+            country_event = 634736010
+        }
+
+        ## Cleanup
+
+        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-without-capital
+        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-cultural-unions
+
+        ai_chance = { factor = 0 }
+    }
+
+    option = {
+        name = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.opt1
+
+        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering
+
+        ai_chance = { factor = 1 }
+    }
+
+    option = {
+        name = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.opt2
+
+        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering
+
+        clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.history-based-releases
+        clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.parent-based-releases
+
+        clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.only-releasables
+        clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+
+        ai_chance = { factor = 0 }
+    }
+
+    option = {
+        name = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.opt3
+
+        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering
+
+        set_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-more-shatter
+
+        ai_chance = { factor = 0 }
+    }
+}
+
+## Shatter machinery
 
 # Main loop
 country_event = {
@@ -484,12 +588,19 @@ country_event = {
         any_country = {
             limit = {
                 exists = no
+
                 any_core = {
                     owned_by = THIS
                 }
+
+                OR = {
+                    capital_scope = { owned_by = THIS }
+                    has_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-without-capital
+                }
+
                 OR = {
                     is_cultural_union = no
-                    has_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.releasing-cultural-unions
+                    has_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-cultural-unions
                 }
             }
 
@@ -629,7 +740,7 @@ country_event = {
 
                     OR = {
                         NOT = { is_cultural_union = yes }
-                        has_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.releasing-cultural-unions
+                        has_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-cultural-unions
                     }
                 }
             }
