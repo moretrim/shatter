@@ -567,12 +567,11 @@ country_event = {
 #                 }
 #                 NOT = {
 #                     tag = REB
+#                     # N.b. HPM/HFM
 #                     tag = UTI
 #                     ruling_party = dominion_conservative
-#                     capital_scope = {
-#                         is_capital = yes
-#                         is_empty = yes
-#                     }
+#                     capital_scope = { is_capital = yes }
+#                     capital_scope = { is_empty = yes }
 #                 }
 
 #                 is_releasable_vassal = yes
@@ -589,12 +588,11 @@ country_event = {
 #                 }
 #                 NOT = {
 #                     tag = REB
+#                     # N.b. HPM/HFM
 #                     tag = UTI
 #                     ruling_party = dominion_conservative
-#                     capital_scope = {
-#                         is_capital = yes
-#                         is_empty = yes
-#                     }
+#                     capital_scope = { is_capital = yes }
+#                     capital_scope = { is_empty = yes }
 #                 }
 
 #                 is_releasable_vassal = no
