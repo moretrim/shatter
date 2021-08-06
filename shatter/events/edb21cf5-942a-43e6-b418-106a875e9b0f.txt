@@ -274,6 +274,13 @@ country_event = {
 # - #11 performs checks, and cannot use remove_core
 # - #12 performs the bulk of the work: release & core removal, while also performing bookkeeping--it
 #   also acts as a notification event (but refer to the note on multiple instances)
+#
+# ## Transferring cores
+#
+# To put the finishing touches, released countries at depth `n` retreive their cores from countries
+# at depth `n - 1`. Consider again the case of the Basque country straddling France and Spain as a
+# motivating example. This also makes the algorithm less sensible to the otherwise arbitrary order
+# of release: the releaser ends up only mattering for the location of the newly made capital.
 
 # Initiation event
 country_event = {
@@ -330,6 +337,7 @@ country_event = {
             }
 
             clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+
             set_variable = {
                 which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
                 value = 0
@@ -379,6 +387,7 @@ country_event = {
             }
 
             clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+
             set_variable = {
                 which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
                 value = 0
@@ -430,6 +439,7 @@ country_event = {
             }
 
             clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+
             set_variable = {
                 which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
                 value = 0
@@ -479,6 +489,7 @@ country_event = {
             }
 
             clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+
             set_variable = {
                 which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
                 value = 0
@@ -515,7 +526,7 @@ country_event = {
             country_event = 634736010
         }
 
-        ## Cleanup
+        ## Clean up
 
         clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-without-capital
         clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-cultural-unions
@@ -717,6 +728,7 @@ country_event = {
     allow_multiple_instances = yes
 
     immediate = {
+        # ask to be released
         random_country = {
             limit = {
                 tag = FROM
@@ -748,6 +760,67 @@ country_event = {
             # setup FROM for remove_core
             country_event = 634736012
         }
+
+        # transfer other cores
+        any_country = {
+            limit = {
+                exists = yes
+                THIS = { exists = yes }
+
+                OR = {
+                    AND = {
+                        FROM = {
+                            check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 1 }
+                            NOT = { check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 2 } }
+                        }
+                        NOT = { check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 2 } }
+                    }
+
+                    AND = {
+                        FROM = {
+                            check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 2 }
+                            NOT = { check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 3 } }
+                        }
+                        NOT = { check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 3 } }
+
+                    }
+
+                    AND = {
+                        FROM = {
+                            check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 3 }
+                            NOT = { check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 4 } }
+                        }
+                        NOT = { check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 4 } }
+
+                    }
+
+                    AND = {
+                        FROM = {
+                            check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 4 }
+                            NOT = { check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 5 } }
+                        }
+                        NOT = { check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 5 } }
+
+                    }
+                }
+
+                # avoid self-destruction
+                any_owned_province = { NOT = { is_core = THIS } }
+
+                # don't take from unciv unless unciv
+                OR = {
+                    NOT = { civilized = no }
+                    THIS = { civilized = no }
+                }
+
+                any_owned_province = {
+                    is_core = THIS
+                    is_capital = no
+                }
+            }
+
+            country_event = 634736013
+        }
     }
 
     option = {
@@ -778,6 +851,8 @@ country_event = {
     #allow_multiple_instances = yes
 
     immediate = {
+        ## Release & revoke
+
         random_owned = {
             limit = {
                 NOT = { has_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.parent-based-releases }
@@ -797,7 +872,8 @@ country_event = {
         random_country = {
             limit = {
                 tag = FROM
-                exists = THIS
+                # don't revoke if the country died performing the release
+                THIS = { exists = yes }
             }
 
             any_owned = {
@@ -813,7 +889,6 @@ country_event = {
         random_country = {
             limit = {
                 tag = FROM
-                exists = THIS
                 NOT = { check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 1 } }
                 THIS = {
                     check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 1 }
@@ -827,7 +902,6 @@ country_event = {
         random_country = {
             limit = {
                 tag = FROM
-                exists = THIS
                 NOT = { check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 1 } }
                 THIS = {
                     check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 2 }
@@ -841,7 +915,6 @@ country_event = {
         random_country = {
             limit = {
                 tag = FROM
-                exists = THIS
                 NOT = { check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 1 } }
                 THIS = {
                     check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 3 }
@@ -855,7 +928,6 @@ country_event = {
         random_country = {
             limit = {
                 tag = FROM
-                exists = THIS
                 NOT = { check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 1 } }
                 THIS = {
                     check_variable = { which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth value = 4 }
@@ -869,6 +941,45 @@ country_event = {
 
     option = {
         name = edb21cf5-942a-43e6-b418-106a875e9b0f.release.opt0
+    }
+}
+
+# Transfer & revoke stray cores
+country_event = {
+    id      = 634736013
+    title   = edb21cf5-942a-43e6-b418-106a875e9b0f.concede.title
+    desc    = edb21cf5-942a-43e6-b418-106a875e9b0f.concede.desc
+    picture = edb21cf5-942a-43e6-b418-106a875e9b0f_shatter_event
+
+    is_triggered_only = yes
+    # Spam prevention TODO DEBUGGING
+    allow_multiple_instances = yes
+
+    immediate = {
+        any_owned = {
+            limit = {
+                # avoid self-destruction
+                THIS = {
+                    any_owned_province = { NOT = { is_core = FROM } }
+
+                    # don't take from unciv unless unciv
+                    OR = {
+                        NOT = { civilized = no }
+                        FROM = { civilized = no }
+                    }
+                }
+
+                is_core = FROM
+                is_capital = no
+            }
+
+            remove_core = THIS
+            secede_province = FROM
+        }
+    }
+
+    option = {
+        name = edb21cf5-942a-43e6-b418-106a875e9b0f.concede.opt0
     }
 }
 

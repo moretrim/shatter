@@ -48,8 +48,8 @@ This mod has been designed so that load order should not matter.
 Usage
 -----
 
-Once a game has been started you can verify that <cite>Shatter</cite> has been loaded correctly by
-looking at the decision screen. It should include the following decision somewhere:
+Once a game has been started you can verify that *Shatter* has been loaded correctly by looking at
+the decision screen. It should include the following decision somewhere:
 
 ![decision](media/decision.jpg)
 
@@ -86,10 +86,8 @@ The event gives you four options:
 
 - shatter the world, breaking free all vassal countries & releasing as many countries as possible by
   trying to follow normal gameplay rules
-- utterly shatter the world, breaking free all vassal countries & releasing even special case
-  countries (typically, countries that are only meant to appear through events and/or in unusual
-  circumstances)
 - do nothing (in case you activated the decision by accident)
+- reset the saved parameters for the country you are currently playing, without shattering anything
 - do nothing, and dismiss the decision for the country you are currently playing (you will not be
   able to shatter the world again as that country)
 
@@ -99,29 +97,54 @@ Please be patient, there is a lot of processing to be done.
 Countries that release others will see their cores revoked on their former lands. Your country will
 not be given preferential treatment and will be undergoing the full shattering process as well.
 
-Once the world has been shattered you will be offered the choice to dismiss the <cite>Shatter</cite>
-decision for the country you are currently playing. This is convenient if e.g. you only intended to
-shatter the world once at the start.
+Once the world has been shattered you will be offered the choice to dismiss the *Shatter* decision
+for the country you are currently playing. This is convenient if e.g. you only intended to shatter
+the world once at the start.
+
+Shattering in detail
+--------------------
+
+The shattering process is best explained as a set of rules:
+
+* countries are released in generations: for a given shattering the initial countries constitute
+  generation 1 and they release the countries that will constitute generation 2
+* the process repeats until shattering is complete: generation 2 will release generation 3 and so on
+* capital priority rule: existing countries attempt to release non-existing countries of which they
+  hold the capital before they do other countries (this is a global order)
+* non-union priority rule: existing countries attempt to release non-cultural unions before they do
+  unions (this is also a global order)
+* core recovery order: countries from a given generation recover their cores from all countries of
+  preceding generations (but never from their own)
+* *no full overlap* rule: a country will not release another that has cores all it, nor will it turn
+  over its entire territory during core recovery
+* unciv priority rule: civilised countries do *not* recover cores held by non-Westernised country
+
+The *no full overlap* rule prevents non-existing cultural unions from subverting the overall
+process. Consider for instance most 1836 maps which feature many German countries (some tiny) and no
+united Germany yet. Without the rule and because German cores usually fully overlap these countries,
+the map would easily end up with a very solid Germany—quite the opposite of shattering.
+
+The same logic applies to non-union countries that fully overlap another as well, which usually act
+as a “variant” government or quasi-cultural union. A good example of this is Bolivian cores fully
+overlapping Peru-Bolivia on 1836 maps based e.g. on the New Nations Mod.
+
+The unciv priority rule is to avoid creating colonial provinces.
 
 Limitations & Known Issues
 --------------------------
 
-The mod does not do anything beyond freeing vassals and releasing countries. In particular, freshly
-released countries will only control cores of their former master. (This is the same as hitting
-*Release* in the diplomatic interface while playing as the latter.) As a result the final borders
-may not quite be what you expect.
-
 Since shattering is always performed in the same order behind the scenes, the process always
 produces the same result (given starting countries and cores on the map **and** which country
-initiates the shattering). This is a bit unfortunate as in general several different results are
-possible (see previous paragraph) and this could be improved on with a little bit of randomisation.
+initiates the shattering). The shattering rules are designed to mitigate this as best as possible.
 Unfortunately random results are harder to achieve in Victoria II mods than you might think.
+
+A side-effect of the design is that shattering is *very* process intensive.
 
 Compatibility
 -------------
 
-This mod should be compatible with Victoria II with its two expansions. It should also be compatible
-with any mod, as long as the following holds:
+This mod has only been tested with Victoria II with its two expansions. It should be compatible with
+any mod, as long as the following holds:
 
 - event IDs `634736xxx` are available
 
@@ -130,8 +153,8 @@ Image Licence
 
 The image as well as its variants that can be found in the mod proper are licenced under a [Creative
 Commons Attribution-ShareAlike 4.0 International License][CC BY-SA 4.0]. They are derivative works
-of <cite>[Point of Impact]</cite> by [Bill Harrison], itself available under the terms of the
-[Creative Commons Attribution 2.0 Generic License][CC BY 2.0].
+of *[Point of Impact]* by [Bill Harrison], itself available under the terms of the [Creative Commons
+Attribution 2.0 Generic License][CC BY 2.0].
 
 [Point of Impact]: https://www.flickr.com/photos/29053754@N08/6074633858
 [Bill Harrison]: https://www.flickr.com/photos/bill_harrison/
@@ -145,7 +168,10 @@ Release History
 
 - implement shatter parameters, to customise shattering behaviour
 - prevent AI countries from picking event outcomes reserved to players (i.e. dismissing the
-  <cite>Shatter</cite> decision)
+  *Shatter* decision)
+- implement capital priority rule for improved consistency and final borders
+- implement core recovery for improved final borders
+- add and document a couple other shatter rules
 
 ### 0.1.0
 
