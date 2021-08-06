@@ -952,8 +952,8 @@ country_event = {
     picture = edb21cf5-942a-43e6-b418-106a875e9b0f_shatter_event
 
     is_triggered_only = yes
-    # Spam prevention TODO DEBUGGING
-    allow_multiple_instances = yes
+    # See #12 for reasoning.
+    #allow_multiple_instances = yes
 
     immediate = {
         any_owned = {
