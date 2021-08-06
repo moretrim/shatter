@@ -21,9 +21,9 @@ Do it once or repeatedly through a campaign, it’s all up to you.
 Installation
 ------------
 
-Grab the [0.1.0 release].
+Grab the [1.0.0 release].
 
-[0.1.0 release]: https://github.com/moretrim/shatter/releases/tag/v0.1.0
+[1.0.0 release]: https://github.com/moretrim/shatter/releases/tag/v1.0.0
 
 Install this as you would any other mod. When installed properly, the `shatter.mod` file and the
 `shatter` directory should live side-by-side. In the Victoria 2 launcher you should see an entry for
@@ -137,7 +137,7 @@ overlapping Peru-Bolivia on 1836 maps based e.g. on the New Nations Mod.
 
 The unciv priority rule is to avoid creating colonial provinces.
 
-Limitations & Known Issues
+Limitations & known issues
 --------------------------
 
 Since shattering is always performed in the same order behind the scenes, the process always
@@ -155,8 +155,8 @@ any mod, as long as the following holds:
 
 - event IDs `634736xxx` are available
 
-Image Licence
--------------
+Image attribution
+-----------------
 
 The image as well as its variants that can be found in the mod proper are licenced under a [Creative
 Commons Attribution-ShareAlike 4.0 International License][CC BY-SA 4.0]. They are derivative works
@@ -168,10 +168,13 @@ Attribution 2.0 Generic License][CC BY 2.0].
 [CC BY-SA 4.0]: https://creativecommons.org/licenses/by-sa/4.0
 [CC BY 2.0]: https://creativecommons.org/licenses/by/2.0
 
-Release History
+Release history
 ---------------
 
-### 1.0.0-dev (in development)
+### 1.0.0
+
+The first real release beyond a simple proof of concept. Shattering results in better defined
+countries.
 
 - implement shatter parameters, to customise shattering behaviour
 - prevent AI countries from picking event outcomes reserved to players (i.e. dismissing the
@@ -179,9 +182,8 @@ Release History
 - implement capital priority rule for improved consistency and final borders
 - implement core recovery for improved final borders
 - add and document a couple other shatter rules
+- add the option to shatter just your own country
 
 ### 0.1.0
 
-[The original release.][v0.1.0]
-
-[v0.1.0]: https://github.com/moretrim/shatter/tree/v0.1.0
+The original release. More of a proof of concept, with serious limitations.
