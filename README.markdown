@@ -1,8 +1,5 @@
 [![shatter](media/title.png)](https://github.com/moretrim/shatter)
 
-Shatter
--------
-
 Build status:
 [![Github Workflow][github-workflow-badge]][github-workflow-dashboard]
 
@@ -11,6 +8,9 @@ Build status:
 [github-workflow-dashboard]:
     https://github.com/moretrim/shatter/actions/workflows/ci-on-push.yaml
     "Github Workflows"
+
+Shatter
+-------
 
 Shatter your Victoria II world at any time you want, in any mod.
 
