@@ -52,6 +52,29 @@ country_event = {
                         has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.only-releasables
                         has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
                     }
+
+                    NOT = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.yes-core-revokation
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-core-revokation
+                    }
+                }
+            }
+
+            owner = { country_event = 634736002 }
+        }
+
+        random_owned = {
+            limit = {
+                owner = {
+                    OR = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.only-releasables
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+                    }
+
+                    OR = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.yes-core-revokation
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-core-revokation
+                    }
                 }
             }
 
@@ -85,6 +108,29 @@ country_event = {
                     OR = {
                         has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.only-releasables
                         has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+                    }
+
+                    NOT = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.yes-core-revokation
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-core-revokation
+                    }
+                }
+            }
+
+            owner = { country_event = 634736002 }
+        }
+
+        random_owned = {
+            limit = {
+                owner = {
+                    OR = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.only-releasables
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+                    }
+
+                    OR = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.yes-core-revokation
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-core-revokation
                     }
                 }
             }
@@ -120,6 +166,29 @@ country_event = {
                         has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.only-releasables
                         has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
                     }
+
+                    NOT = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.yes-core-revokation
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-core-revokation
+                    }
+                }
+            }
+
+            owner = { country_event = 634736002 }
+        }
+
+        random_owned = {
+            limit = {
+                owner = {
+                    OR = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.only-releasables
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+                    }
+
+                    OR = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.yes-core-revokation
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-core-revokation
+                    }
                 }
             }
 
@@ -154,6 +223,29 @@ country_event = {
                         has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.only-releasables
                         has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
                     }
+
+                    NOT = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.yes-core-revokation
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-core-revokation
+                    }
+                }
+            }
+
+            owner = { country_event = 634736002 }
+        }
+
+        random_owned = {
+            limit = {
+                owner = {
+                    OR = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.only-releasables
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+                    }
+
+                    OR = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.yes-core-revokation
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-core-revokation
+                    }
                 }
             }
 
@@ -175,7 +267,31 @@ country_event = {
     option = {
         name = edb21cf5-942a-43e6-b418-106a875e9b0f.releasable-only.opt0
 
-        country_event = 634736010
+        random_owned = {
+            limit = {
+                owner = {
+                    NOT = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.yes-core-revokation
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-core-revokation
+                    }
+                }
+            }
+
+            owner = { country_event = 634736002 }
+        }
+
+        random_owned = {
+            limit = {
+                owner = {
+                    OR = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.yes-core-revokation
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-core-revokation
+                    }
+                }
+            }
+
+            owner = { country_event = 634736010 }
+        }
 
         ai_chance = { factor = 1 }
     }
@@ -185,7 +301,31 @@ country_event = {
 
         set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
 
-        country_event = 634736010
+        random_owned = {
+            limit = {
+                owner = {
+                    NOT = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.yes-core-revokation
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-core-revokation
+                    }
+                }
+            }
+
+            owner = { country_event = 634736002 }
+        }
+
+        random_owned = {
+            limit = {
+                owner = {
+                    OR = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.yes-core-revokation
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-core-revokation
+                    }
+                }
+            }
+
+            owner = { country_event = 634736010 }
+        }
 
         ai_chance = { factor = 0 }
     }
@@ -195,7 +335,31 @@ country_event = {
 
         set_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.only-releasables
 
-        country_event = 634736010
+        random_owned = {
+            limit = {
+                owner = {
+                    NOT = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.yes-core-revokation
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-core-revokation
+                    }
+                }
+            }
+
+            owner = { country_event = 634736002 }
+        }
+
+        random_owned = {
+            limit = {
+                owner = {
+                    OR = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.yes-core-revokation
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-core-revokation
+                    }
+                }
+            }
+
+            owner = { country_event = 634736010 }
+        }
 
         ai_chance = { factor = 0 }
     }
@@ -204,6 +368,77 @@ country_event = {
         name = edb21cf5-942a-43e6-b418-106a875e9b0f.releasable-only.opt3
 
         set_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+
+        random_owned = {
+            limit = {
+                owner = {
+                    NOT = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.yes-core-revokation
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-core-revokation
+                    }
+                }
+            }
+
+            owner = { country_event = 634736002 }
+        }
+
+        random_owned = {
+            limit = {
+                owner = {
+                    OR = {
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.yes-core-revokation
+                        has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-core-revokation
+                    }
+                }
+            }
+
+            owner = { country_event = 634736010 }
+        }
+
+        ai_chance = { factor = 0 }
+    }
+}
+
+country_event = {
+    id      = 634736002
+    title   = edb21cf5-942a-43e6-b418-106a875e9b0f.core-revokation.title
+    desc    = edb21cf5-942a-43e6-b418-106a875e9b0f.core-revokation.desc
+    picture = edb21cf5-942a-43e6-b418-106a875e9b0f_shatter_event
+
+    is_triggered_only = yes
+
+    option = {
+        name = edb21cf5-942a-43e6-b418-106a875e9b0f.core-revokation.opt0
+
+        country_event = 634736010
+
+        ai_chance = { factor = 1 }
+    }
+
+    option = {
+        name = edb21cf5-942a-43e6-b418-106a875e9b0f.core-revokation.opt1
+
+        set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-core-revokation
+
+        country_event = 634736010
+
+        ai_chance = { factor = 0 }
+    }
+
+    option = {
+        name = edb21cf5-942a-43e6-b418-106a875e9b0f.core-revokation.opt2
+
+        set_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.yes-core-revokation
+
+        country_event = 634736010
+
+        ai_chance = { factor = 0 }
+    }
+
+    option = {
+        name = edb21cf5-942a-43e6-b418-106a875e9b0f.core-revokation.opt3
+
+        set_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-core-revokation
 
         country_event = 634736010
 
@@ -316,6 +551,16 @@ country_event = {
 
             set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
         }
+
+        random_owned = {
+            limit = {
+                owner = {
+                    has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-core-revokation
+                }
+            }
+
+            set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-core-revokation
+        }
     }
 
     option = {
@@ -425,8 +670,6 @@ country_event = {
 
             country_event = 634736011
         }
-
-        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-cultural-unions
 
         ## Non-unions without capitals
 
@@ -628,8 +871,6 @@ country_event = {
 
         country_event = 634736011
 
-        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-cultural-unions
-
         ## Non-unions without capitals
 
         set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-without-capital
@@ -740,6 +981,9 @@ country_event = {
 
         clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.only-releasables
         clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+
+        clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.yes-core-revokation
+        clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-core-revokation
 
         ai_chance = { factor = 0 }
     }
@@ -1055,19 +1299,29 @@ country_event = {
             owner = { release_vassal = FROM release_vassal = FROM }
         }
 
+        # mark for breadth-first traversal
         random_country = {
             limit = {
                 tag = FROM
+            }
+
+            set_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+        }
+
+        # revoke cores
+        random_country = {
+            limit = {
+                tag = FROM
+
                 # don't revoke if the country died performing the release
                 THIS = { exists = yes }
+
+                NOT = { has_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-core-revokation }
             }
 
             any_owned = {
                 remove_core = THIS
             }
-
-            # mark for breadth-first traversal
-            set_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
         }
 
         ## Set depth
@@ -1157,9 +1411,33 @@ country_event = {
 
                 is_core = FROM
                 is_capital = no
+
+                NOT = { has_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-core-revokation }
             }
 
             remove_core = THIS
+            secede_province = FROM
+        }
+
+        any_owned = {
+            limit = {
+                # avoid self-destruction
+                THIS = {
+                    any_owned_province = { NOT = { is_core = FROM } }
+
+                    # don't take from unciv unless unciv
+                    OR = {
+                        NOT = { civilized = no }
+                        FROM = { civilized = no }
+                    }
+                }
+
+                is_core = FROM
+                is_capital = no
+
+                has_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-core-revokation
+            }
+
             secede_province = FROM
         }
     }

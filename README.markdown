@@ -73,6 +73,11 @@ purposes:
       cultural unions) will not appear on the map.
     * **Allow unreleasable countries**: try to release everything, consequences be damned.
 
+1.  * **Enable core revokation**: countries lose cores on the countries they release. This mimics
+    the behaviour of releasing a country through the *Release Nations* tab of the *Politics* screen.
+    * **Disable core revokation**: countries keep cores on countries they release. This tends to
+      benefit large countries.
+
 Each parameter is picked on a per-activation basis, or can alternatively be saved to be re-used for
 all subsequent shatterings for this campaign. Saved parameters are stored on a per-country basis,
 and can be reset through the decision (without actually shattering anything).

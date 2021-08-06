@@ -9,11 +9,17 @@ edb21cf5-942a-43e6-b418-106a875e9b0f.history-or-parent.opt1;Parent-based, please
 edb21cf5-942a-43e6-b418-106a875e9b0f.history-or-parent.opt2;History-based, and remember this parameter. §B(For this country only.)§!;;;;;;;;;;;;;
 edb21cf5-942a-43e6-b418-106a875e9b0f.history-or-parent.opt3;Parent-based, and remember this parameter. §B(For this country only.)§!;;;;;;;;;;;;;
 edb21cf5-942a-43e6-b418-106a875e9b0f.releasable-only.title;Shatter parameter: countries to release;;;;;;;;;;;;;
-edb21cf5-942a-43e6-b418-106a875e9b0f.releasable-only.desc;\n§BReleasable countries only:§! stick to countries that are allowed to be released through the §YRelease Nations§! tab of the §YPolitics§! screen. Special cases (usually: revolt tags, some cultural unions) will not appear on the map. \n\n§BAllow unreleasable countries:§! try to release everything, consequences be damned.;;;;;;;;;;;;;
+edb21cf5-942a-43e6-b418-106a875e9b0f.releasable-only.desc;\n§BReleasable countries only:§! stick to countries that are allowed to be released through the §YRelease Nations§! tab of the §YPolitics§! screen. Special cases (usually: revolt tags, some cultural unions) will not appear on the map.\n\n§BAllow unreleasable countries:§! try to release everything, consequences be damned.;;;;;;;;;;;;;
 edb21cf5-942a-43e6-b418-106a875e9b0f.releasable-only.opt0;Releasable countries only, please.;;;;;;;;;;;;;
 edb21cf5-942a-43e6-b418-106a875e9b0f.releasable-only.opt1;Allow unreleasable countries, please.;;;;;;;;;;;;;
 edb21cf5-942a-43e6-b418-106a875e9b0f.releasable-only.opt2;Releasable countries only, and remember this parameter. §B(For this country only.)§!;;;;;;;;;;;;;
 edb21cf5-942a-43e6-b418-106a875e9b0f.releasable-only.opt3;Allow unreleasable countries, and remember this parameter. §B(For this country only.)§!;;;;;;;;;;;;;
+edb21cf5-942a-43e6-b418-106a875e9b0f.core-revokation.title;Shatter parameter: core revokation;;;;;;;;;;;;;
+edb21cf5-942a-43e6-b418-106a875e9b0f.core-revokation.desc;\n§BEnable core revokation:§! countries lose cores on the countries they release. This mimics the behaviour of releasing a country through the §YRelease Nations§! tab of the §YPolitics§! screen\n\n§BDisable core revokation:§! countries keep cores on the countries they release. This tends to benefit large countries.;;;;;;;;;;;;;
+edb21cf5-942a-43e6-b418-106a875e9b0f.core-revokation.opt0;Enable core revokation, please.;;;;;;;;;;;;;
+edb21cf5-942a-43e6-b418-106a875e9b0f.core-revokation.opt1;Disable core revokation, please.;;;;;;;;;;;;;
+edb21cf5-942a-43e6-b418-106a875e9b0f.core-revokation.opt2;Enable revokation, and remember this parameter. §B(For this country only.)§!;;;;;;;;;;;;;
+edb21cf5-942a-43e6-b418-106a875e9b0f.core-revokation.opt3;Disable revokation, and remember this parameter. §B(For this country only.)§!;;;;;;;;;;;;;
 edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.title;Shatter the World;;;;;;;;;;;;;
 edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.desc;\nBreak every vassal country free of their overlord. Make everyone release as many countries as they can according to specified parameters.;;;;;;;;;;;;;
 edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.opt0;Proceed. §R(Shatter the world.)§!;;;;;;;;;;;;;

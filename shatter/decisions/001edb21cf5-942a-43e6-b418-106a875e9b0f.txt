@@ -18,6 +18,7 @@ political_decisions = {
 
             clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.parent-based-releases
             clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
+            clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-core-revokation
 
             ## Dispatch to setup event
 
@@ -79,7 +80,33 @@ political_decisions = {
                                     }
                                 }
 
-                                owner = { country_event = 634736010 }
+                                owner = {
+                                    random_owned = {
+                                        limit = {
+                                            owner = {
+                                                NOT = {
+                                                    has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.yes-core-revokation
+                                                    has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-core-revokation
+                                                }
+                                            }
+                                        }
+
+                                        owner = { country_event = 634736002 }
+                                    }
+
+                                    random_owned = {
+                                        limit = {
+                                            owner = {
+                                                OR = {
+                                                    has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.yes-core-revokation
+                                                    has_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.no-core-revokation
+                                                }
+                                            }
+                                        }
+
+                                        owner = { country_event = 634736010 }
+                                    }
+                                }
                             }
                         }
                     }
