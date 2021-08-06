@@ -82,10 +82,12 @@ with the following choice before anything is performed:
 
 ![event](media/event.jpg)
 
-The event gives you four options:
+The event gives you five options:
 
 - shatter the world, breaking free all vassal countries & releasing as many countries as possible by
   trying to follow normal gameplay rules
+- shatter your country only (though released countries may still retrieve their cores from other
+  countries)
 - do nothing (in case you activated the decision by accident)
 - reset the saved parameters for the country you are currently playing, without shattering anything
 - do nothing, and dismiss the decision for the country you are currently playing (you will not be

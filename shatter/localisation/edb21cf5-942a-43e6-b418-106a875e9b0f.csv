@@ -17,9 +17,10 @@ edb21cf5-942a-43e6-b418-106a875e9b0f.releasable-only.opt3;Allow unreleasable cou
 edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.title;Shatter the World;;;;;;;;;;;;;
 edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.desc;\nBreak every vassal country free of their overlord. Make everyone release as many countries as they can according to specified parameters.;;;;;;;;;;;;;
 edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.opt0;Proceed. §R(Shatter the world.)§!;;;;;;;;;;;;;
-edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.opt1;I made a mistake, take me back. §B(Will not shatter the world.)§!;;;;;;;;;;;;;
-edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.opt2;Reset my parameters. §B(Will not shatter the world.)§!;;;;;;;;;;;;;
-edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.opt3;No more, thanks. §B($COUNTRY$ will no longer be allowed to shatter.)§!;;;;;;;;;;;;;
+edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.opt1;§RKeep it close to home. (Shatter your country only.)§!;;;;;;;;;;;;;
+edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.opt2;I made a mistake, take me back. §B(Will not shatter the world.)§!;;;;;;;;;;;;;
+edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.opt3;Reset my parameters. §B(Will not shatter the world.)§!;;;;;;;;;;;;;
+edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.opt4;No more, thanks. §B($COUNTRY$ will no longer be allowed to shatter.)§!;;;;;;;;;;;;;
 edb21cf5-942a-43e6-b418-106a875e9b0f.break.title;A Piece of the World Breaks;;;;;;;;;;;;;
 edb21cf5-942a-43e6-b418-106a875e9b0f.break.desc;\nA country has chosen to shatter the world. All outstanding bonds of suzerainty have been broken, and self-rule is being extended to many countries.;;;;;;;;;;;;;
 edb21cf5-942a-43e6-b418-106a875e9b0f.break.opt0;Great. Now to pick up the pieces.;;;;;;;;;;;;;

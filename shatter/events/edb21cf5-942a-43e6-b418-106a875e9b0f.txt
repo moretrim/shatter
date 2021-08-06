@@ -539,11 +539,197 @@ country_event = {
 
         clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering
 
-        ai_chance = { factor = 1 }
+        # N.b. scopes such as any_country inside events fired from a decision appears to follow
+        # decision rules
+
+        ## Non-unions with capitals
+
+        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-without-capital
+        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-cultural-unions
+
+        ### (Re)set bookkeeping
+
+        any_country = {
+            limit = {
+                exists = no
+            }
+
+            clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+
+            set_variable = {
+                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+                value = 0
+            }
+        }
+
+        clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+        set_variable = {
+            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+            value = 1
+        }
+
+        any_country = {
+            limit = {
+                exists = yes
+            }
+
+            clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+            set_variable = {
+                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+                value = 1
+            }
+        }
+
+        ### Break this country
+
+        country_event = 634736010
+
+        ## Culture unions with capitals
+
+        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-without-capital
+        set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-cultural-unions
+
+        ### (Re)set bookkeeping
+
+        any_country = {
+            limit = {
+                exists = no
+            }
+
+            clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+
+            set_variable = {
+                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+                value = 0
+            }
+        }
+
+        clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+        set_variable = {
+            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+            value = 1
+        }
+
+        any_country = {
+            limit = {
+                exists = yes
+            }
+
+            clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+            set_variable = {
+                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+                value = 1
+            }
+        }
+
+        ### Break this country
+
+        country_event = 634736010
+
+        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-cultural-unions
+
+        ## Non-unions without capitals
+
+        set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-without-capital
+        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-cultural-unions
+
+        ### (Re)set bookkeeping
+
+        any_country = {
+            limit = {
+                exists = no
+            }
+
+            clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+
+            set_variable = {
+                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+                value = 0
+            }
+        }
+
+        clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+        set_variable = {
+            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+            value = 1
+        }
+
+        any_country = {
+            limit = {
+                exists = yes
+            }
+
+            clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+            set_variable = {
+                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+                value = 1
+            }
+        }
+
+        ### Break this country
+
+        country_event = 634736010
+
+        ## Culture unions without capitals
+
+        set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-without-capital
+        set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-cultural-unions
+
+        ### (Re)set bookkeeping
+
+        any_country = {
+            limit = {
+                exists = no
+            }
+
+            clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+
+            set_variable = {
+                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+                value = 0
+            }
+        }
+
+        clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+        set_variable = {
+            which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+            value = 1
+        }
+
+        any_country = {
+            limit = {
+                exists = yes
+            }
+
+            clr_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.to-be-broken
+            set_variable = {
+                which = edb21cf5-942a-43e6-b418-106a875e9b0f.depth
+                value = 1
+            }
+        }
+
+        ### Break this country
+
+        country_event = 634736010
+
+        ## Clean up
+
+        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-without-capital
+        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.release-cultural-unions
+
+        ai_chance = { factor = 0 }
     }
 
     option = {
         name = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.opt2
+
+        clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering
+
+        ai_chance = { factor = 1 }
+    }
+
+    option = {
+        name = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.opt3
 
         clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering
 
@@ -557,7 +743,7 @@ country_event = {
     }
 
     option = {
-        name = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.opt3
+        name = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.opt4
 
         clr_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering
 
