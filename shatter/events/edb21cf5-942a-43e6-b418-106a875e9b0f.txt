@@ -230,13 +230,13 @@ country_event = {
 # ## Practical constraints
 #
 # The main limitation is that we don't have access to looping constructs. Instead we (gingerly) have
-# main "loop" event #10 either stop if at maximum depth, or else recursively invoke itself at step c
-# targeting the freshly released countries of step b.
+# main "loop" event x010 either stop if at maximum depth, or else recursively invoke itself at step
+# c targeting the freshly released countries of step b.
 #
 # Note that because every iteration step tentatively invokes the next one for multiple countries
 # this would be a classic SUPERLINEAR nested loop. We *must* perform careful bookkeeping to prevent
 # redundant code, safeguarding performance: the `to-be-broken` country flag. For every depth `n`,
-# every country receives event #10 exactly once.
+# every country receives event x010 exactly once.
 #
 # ## Ordering of effects
 #
@@ -268,12 +268,12 @@ country_event = {
 #
 # ## Releasing
 #
-# #11-#12 is one chain to release the initial receiver of #11. The chain spans two events to juggle
-# THIS & FROM, due to script limitations:
+# x011-x012 is one chain to release the initial receiver of x011. The chain spans two events to
+# juggle THIS & FROM, due to script limitations:
 #
-# - #11 performs checks, and cannot use remove_core
-# - #12 performs the bulk of the work: release & core removal, while also performing bookkeeping--it
-#   also acts as a notification event (but refer to the note on multiple instances)
+# - x011 performs checks, and cannot use remove_core
+# - x012 performs the bulk of the work: release & core removal, while also performing
+#   bookkeeping--it also acts as a notification event (but refer to the note on multiple instances)
 #
 # ## Transferring cores
 #
@@ -577,7 +577,7 @@ country_event = {
     picture = edb21cf5-942a-43e6-b418-106a875e9b0f_shatter_event
 
     is_triggered_only = yes
-    # See #12 for reasoning.
+    # See x012 for reasoning.
     #allow_multiple_instances = yes
 
     immediate = {
@@ -837,7 +837,7 @@ country_event = {
 
     is_triggered_only = yes
     # We could allow this if we wanted. One way or the other the event *is* fired multiple times
-    # against `THIS` (from initiating event #10), and the `immediate` block appears to be processed
+    # against `THIS` (from initiating event x010), and the `immediate` block appears to be processed
     # every time regardless of `allow_multiple_instances`.
     #
     # That is, from the perspective of the human player, a single event is received (if multiple
@@ -952,7 +952,7 @@ country_event = {
     picture = edb21cf5-942a-43e6-b418-106a875e9b0f_shatter_event
 
     is_triggered_only = yes
-    # See #12 for reasoning.
+    # See x012 for reasoning.
     #allow_multiple_instances = yes
 
     immediate = {
