@@ -25,9 +25,10 @@ Grab the [1.0.0 release].
 
 [1.0.0 release]: https://github.com/moretrim/shatter/releases/tag/v1.0.0
 
-Install this as you would any other mod. When installed properly, the `shatter.mod` file and the
-`shatter` directory should live side-by-side. In the Victoria 2 launcher you should see an entry for
-the mod:
+Extract the `shatter` folder and the `shatter.mod` file from the provided archive, and place them in
+your favourite `mod` folder. Both the folder and file must end up side-by-side.
+
+In the Victoria 2 launcher you should see an entry for the mod:
 
 <figure>
 
