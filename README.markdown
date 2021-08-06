@@ -168,6 +168,20 @@ Attribution 2.0 Generic License][CC BY 2.0].
 [CC BY-SA 4.0]: https://creativecommons.org/licenses/by-sa/4.0
 [CC BY 2.0]: https://creativecommons.org/licenses/by/2.0
 
+Other resources
+---------------
+
+|  |  |
+|-:|:-|
+**[Troubleshooting Guide][]** | Having issues running Victoria II? Try our guide!
+**[ccHFM][]** | An unofficial, ongoing effort to maintain [HFM][]
+**[The Country Workshop][]** | Collection of odd alternative starts and fantasy countries designed on a whim, provided as a submod for ccHFM
+
+[Troubleshooting Guide]: https://github.com/moretrim/victoria2-troubleshooting#readme
+[ccHFM]: https://github.com/moretrim/ccHFM#readme
+[HFM]: https://github.com/SighPie/HFM#readme
+[The Country Workshop]: https://github.com/moretrim/country-workshop#readme
+
 Release history
 ---------------
 
