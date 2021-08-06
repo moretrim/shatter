@@ -79,7 +79,7 @@ political_decisions = {
                                     }
                                 }
 
-                                owner = { country_event = 634736002 }
+                                owner = { country_event = 634736010 }
                             }
                         }
                     }

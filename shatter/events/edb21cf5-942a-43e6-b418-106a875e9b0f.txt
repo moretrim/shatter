@@ -1,7 +1,7 @@
 # mod UUID to avoid name collisions: edb21cf5-942a-43e6-b418-106a875e9b0f
 # UUID mod 2^21-1 is used as the event ID pattern: 634736xxx
 
-## Shatter setup
+## Shatter parameters
 
 # Before the initiation event proper is fired, the player is presented with events to pick shatter
 # parameters.
@@ -55,7 +55,7 @@ country_event = {
                 }
             }
 
-            owner = { country_event = 634736002 }
+            owner = { country_event = 634736010 }
         }
 
         ai_chance = { factor = 1 }
@@ -89,7 +89,7 @@ country_event = {
                 }
             }
 
-            owner = { country_event = 634736002 }
+            owner = { country_event = 634736010 }
         }
 
         ai_chance = { factor = 0 }
@@ -123,7 +123,7 @@ country_event = {
                 }
             }
 
-            owner = { country_event = 634736002 }
+            owner = { country_event = 634736010 }
         }
 
         ai_chance = { factor = 0 }
@@ -157,7 +157,7 @@ country_event = {
                 }
             }
 
-            owner = { country_event = 634736002 }
+            owner = { country_event = 634736010 }
         }
 
         ai_chance = { factor = 0 }
@@ -175,7 +175,7 @@ country_event = {
     option = {
         name = edb21cf5-942a-43e6-b418-106a875e9b0f.releasable-only.opt0
 
-        country_event = 634736002
+        country_event = 634736010
 
         ai_chance = { factor = 1 }
     }
@@ -185,7 +185,7 @@ country_event = {
 
         set_global_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
 
-        country_event = 634736002
+        country_event = 634736010
 
         ai_chance = { factor = 0 }
     }
@@ -195,7 +195,7 @@ country_event = {
 
         set_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.only-releasables
 
-        country_event = 634736002
+        country_event = 634736010
 
         ai_chance = { factor = 0 }
     }
@@ -205,11 +205,13 @@ country_event = {
 
         set_country_flag = edb21cf5-942a-43e6-b418-106a875e9b0f.allow-unreleasables
 
-        country_event = 634736002
+        country_event = 634736010
 
         ai_chance = { factor = 0 }
     }
 }
+
+## Shatter machinery
 
 # ## Design
 #
@@ -284,7 +286,7 @@ country_event = {
 
 # Initiation event
 country_event = {
-    id      = 634736002
+    id      = 634736010
     title   = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.title
     desc    = edb21cf5-942a-43e6-b418-106a875e9b0f.shattering.desc
     picture = edb21cf5-942a-43e6-b418-106a875e9b0f_shatter_event
@@ -752,8 +754,6 @@ country_event = {
         ai_chance = { factor = 0 }
     }
 }
-
-## Shatter machinery
 
 # Main loop
 country_event = {
